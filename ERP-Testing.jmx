@@ -1,0 +1,1194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.4.1">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="ERP-Testing" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP请求默认值" enabled="true">
+        <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+          <collectionProp name="Arguments.arguments"/>
+        </elementProp>
+        <stringProp name="HTTPSampler.domain">58.247.87.190</stringProp>
+        <stringProp name="HTTPSampler.port">8002</stringProp>
+        <stringProp name="HTTPSampler.protocol">http</stringProp>
+        <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+        <stringProp name="HTTPSampler.path"></stringProp>
+        <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+        <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+        <stringProp name="HTTPSampler.response_timeout"></stringProp>
+      </ConfigTestElement>
+      <hashTree/>
+      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP信息头管理器" enabled="true">
+        <collectionProp name="HeaderManager.headers">
+          <elementProp name="Content-Type" elementType="Header">
+            <stringProp name="Header.name">Content-Type</stringProp>
+            <stringProp name="Header.value">application/json</stringProp>
+          </elementProp>
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">User-Agent</stringProp>
+            <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36</stringProp>
+          </elementProp>
+          <elementProp name="charset" elementType="Header">
+            <stringProp name="Header.name">charset</stringProp>
+            <stringProp name="Header.value">utf-8</stringProp>
+          </elementProp>
+        </collectionProp>
+      </HeaderManager>
+      <hashTree/>
+      <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie管理器" enabled="true">
+        <collectionProp name="CookieManager.cookies"/>
+        <boolProp name="CookieManager.clearEachIteration">false</boolProp>
+        <boolProp name="CookieManager.controlledByThreadGroup">false</boolProp>
+      </CookieManager>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="登录" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="检查登录" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;USER_NAME&quot;:&quot;wmy&quot;}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/songbaisys/sys/checkLogin</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="新的登录接口" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;USER_NAME&quot;:&quot;wmy&quot;,&quot;PASSWORD&quot;:&quot;Wang@123&quot;}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/songbaisys/sys/sys_login_new</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="当前登录用户的id" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">USER_ID</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.PD.USER_ID</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="当前登录用户的name" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">NAME</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.PD.NAME</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="请求权限" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/songbaisys/main/index</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="切换公司" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;USER_ID&quot;:&quot;44f7120148644e48a91c38e2f4e3911f&quot;,&#xd;
+    &quot;CURRENT_AUTHORITY&quot;:{&#xd;
+        &quot;orgId&quot;:&quot;5651cc72fc294f42b1376020555feca1&quot;,&#xd;
+        &quot;orgCode&quot;:&quot;65478&quot;,&#xd;
+        &quot;orgName&quot;:&quot;组织-wmy&quot;,&#xd;
+        &quot;orgParentId&quot;:&quot;1&quot;,&#xd;
+        &quot;writeFlag&quot;:1,&#xd;
+        &quot;orgType&quot;:&quot;1&quot;,&#xd;
+        &quot;status&quot;:0,&#xd;
+        &quot;ifHide&quot;:0,&#xd;
+        &quot;childrenList&quot;:[&#xd;
+            {&#xd;
+                &quot;orgId&quot;:&quot;ee0ecc469de44f359760c60692b939c0&quot;,&#xd;
+                &quot;orgCode&quot;:&quot;8744&quot;,&#xd;
+                &quot;orgName&quot;:&quot;采购-汪明月&quot;,&#xd;
+                &quot;orgParentId&quot;:&quot;5651cc72fc294f42b1376020555feca1&quot;,&#xd;
+                &quot;writeFlag&quot;:1,&#xd;
+                &quot;orgType&quot;:&quot;2&quot;,&#xd;
+                &quot;status&quot;:0,&#xd;
+                &quot;ifHide&quot;:0,&#xd;
+                &quot;defaultOrg&quot;:0&#xd;
+            },&#xd;
+            {&#xd;
+                &quot;orgId&quot;:&quot;31adad44c388407b83c8aed10a88ae7d&quot;,&#xd;
+                &quot;orgCode&quot;:&quot;42647&quot;,&#xd;
+                &quot;orgName&quot;:&quot;销售-wmy&quot;,&#xd;
+                &quot;orgParentId&quot;:&quot;5651cc72fc294f42b1376020555feca1&quot;,&#xd;
+                &quot;writeFlag&quot;:1,&#xd;
+                &quot;orgType&quot;:&quot;3&quot;,&#xd;
+                &quot;status&quot;:0,&#xd;
+                &quot;ifHide&quot;:0,&#xd;
+                &quot;defaultOrg&quot;:0&#xd;
+            },&#xd;
+            {&#xd;
+                &quot;orgId&quot;:&quot;bcb3afe579a3417a8ca222a95b65835b&quot;,&#xd;
+                &quot;orgCode&quot;:&quot;637383&quot;,&#xd;
+                &quot;orgName&quot;:&quot;仓库-汪明月&quot;,&#xd;
+                &quot;orgParentId&quot;:&quot;5651cc72fc294f42b1376020555feca1&quot;,&#xd;
+                &quot;writeFlag&quot;:1,&#xd;
+                &quot;orgType&quot;:&quot;4&quot;,&#xd;
+                &quot;status&quot;:0,&#xd;
+                &quot;ifHide&quot;:0,&#xd;
+                &quot;defaultOrg&quot;:0&#xd;
+            },&#xd;
+            {&#xd;
+                &quot;orgId&quot;:&quot;7085a21ffd21446cae20656b6143a120&quot;,&#xd;
+                &quot;orgCode&quot;:&quot;89754&quot;,&#xd;
+                &quot;orgName&quot;:&quot;仓库2-wmy&quot;,&#xd;
+                &quot;orgParentId&quot;:&quot;5651cc72fc294f42b1376020555feca1&quot;,&#xd;
+                &quot;writeFlag&quot;:1,&#xd;
+                &quot;orgType&quot;:&quot;4&quot;,&#xd;
+                &quot;status&quot;:0,&#xd;
+                &quot;ifHide&quot;:0,&#xd;
+                &quot;defaultOrg&quot;:0&#xd;
+            },&#xd;
+            {&#xd;
+                &quot;orgId&quot;:&quot;3f23c8b582e84eec9268d22900178a32&quot;,&#xd;
+                &quot;orgCode&quot;:&quot;79854&quot;,&#xd;
+                &quot;orgName&quot;:&quot;仓库3-wmy&quot;,&#xd;
+                &quot;orgParentId&quot;:&quot;5651cc72fc294f42b1376020555feca1&quot;,&#xd;
+                &quot;writeFlag&quot;:1,&#xd;
+                &quot;orgType&quot;:&quot;4&quot;,&#xd;
+                &quot;status&quot;:0,&#xd;
+                &quot;ifHide&quot;:0,&#xd;
+                &quot;defaultOrg&quot;:0&#xd;
+            },&#xd;
+            {&#xd;
+                &quot;orgId&quot;:&quot;5f75e73b0f504ff38c6566db40d570ce&quot;,&#xd;
+                &quot;orgCode&quot;:&quot;24623762&quot;,&#xd;
+                &quot;orgName&quot;:&quot;寄售仓-wmy&quot;,&#xd;
+                &quot;orgParentId&quot;:&quot;5651cc72fc294f42b1376020555feca1&quot;,&#xd;
+                &quot;writeFlag&quot;:1,&#xd;
+                &quot;orgType&quot;:&quot;4&quot;,&#xd;
+                &quot;status&quot;:0,&#xd;
+                &quot;ifHide&quot;:0,&#xd;
+                &quot;defaultOrg&quot;:0&#xd;
+            },&#xd;
+            {&#xd;
+                &quot;orgId&quot;:&quot;a0ca50b7ac4d477d808ffb24d0b3dab7&quot;,&#xd;
+                &quot;orgCode&quot;:&quot;4367&quot;,&#xd;
+                &quot;orgName&quot;:&quot;盘点仓-wmy&quot;,&#xd;
+                &quot;orgParentId&quot;:&quot;5651cc72fc294f42b1376020555feca1&quot;,&#xd;
+                &quot;writeFlag&quot;:1,&#xd;
+                &quot;orgType&quot;:&quot;4&quot;,&#xd;
+                &quot;status&quot;:0,&#xd;
+                &quot;ifHide&quot;:0,&#xd;
+                &quot;defaultOrg&quot;:0&#xd;
+            }&#xd;
+        ],&#xd;
+        &quot;erpCompanyId&quot;:&quot;30d1da43703b40a68e346f608b098440&quot;,&#xd;
+        &quot;erpCompanyName&quot;:&quot;组织-wmy&quot;,&#xd;
+        &quot;defaultOrg&quot;:0&#xd;
+    }&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/songbaisys/user/change_org</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="信息请求" enabled="false">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="OFFSET" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">1</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">OFFSET</stringProp>
+              </elementProp>
+              <elementProp name="SIZE" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">1</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">SIZE</stringProp>
+              </elementProp>
+              <elementProp name="STATUS" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">0</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">STATUS</stringProp>
+              </elementProp>
+              <elementProp name="USER_ID" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${__P(USER_ID,)}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">USER_ID</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/songbaisys/user/getlist2</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="ORG_ID" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">ORG_ID</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].ORG_ID</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="ORG_NAME" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">ORG_NAME</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].ORG_NAME</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="COMPANY_ID" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">COMPANY_ID</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].COMPANY_ID</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="COMPANY_NAME" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">COMPANY_NAME</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].COMPANY_NAME</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell 后置处理程序" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">${__setProperty(COMPANY_ID,${COMPANY_ID},)};
+${__setProperty(COMPANY_NAME,${COMPANY_NAME},)};
+${__setProperty(ORG_ID,${ORG_ID},)};
+${__setProperty(ORG_NAME,${ORG_NAME},)};</stringProp>
+          </BeanShellPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="供应商列表(所有数据)" enabled="false">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="USER_ID:" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">c8c3983891cf4e95a3360084fe17414b</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">USER_ID:</stringProp>
+              </elementProp>
+              <elementProp name="MENU_NAME" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">supplier</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">MENU_NAME</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/songbaisys/appopt/menu/user/query</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="根据用户id查询公司信息" enabled="false">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="OFFSET" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">1</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">OFFSET</stringProp>
+              </elementProp>
+              <elementProp name="SIZE" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">1</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">SIZE</stringProp>
+              </elementProp>
+              <elementProp name="STATUS" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">0</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">STATUS</stringProp>
+              </elementProp>
+              <elementProp name="USER_ID" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${USER_ID}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">USER_ID</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/songbaisys/user/getlist2</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="分页查询供应商列表" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;selectList&quot;:[{&quot;culumnName&quot;:&quot;COUNT_ID&quot;,&quot;param&quot;:&quot;&quot;,&quot;selectType&quot;:&quot;1002001&quot;}],&quot;OFFSET&quot;:0,&quot;SIZE&quot;:8}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/songbaisys/supplier/query_supplier_column</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="查询供应商" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;selectList&quot;:[&#xd;
+        {&#xd;
+            &quot;culumnName&quot;:&quot;ALLOW_STATUS&quot;,&#xd;
+            &quot;selectType&quot;:&quot;1001001&quot;,&#xd;
+            &quot;param&quot;:1&#xd;
+        },&#xd;
+        {&#xd;
+            &quot;culumnName&quot;:&quot;SUPPLIER_COUNT&quot;,&#xd;
+            &quot;selectType&quot;:&quot;1002001&quot;,&#xd;
+            &quot;param&quot;:&quot;&quot;&#xd;
+        },&#xd;
+        {&#xd;
+            &quot;culumnName&quot;:&quot;CHECK_STATUS&quot;,&#xd;
+            &quot;selectType&quot;:&quot;1001001&quot;,&#xd;
+            &quot;param&quot;:null&#xd;
+        }&#xd;
+    ],&#xd;
+    &quot;OFFSET&quot;:0,&#xd;
+    &quot;SIZE&quot;:10&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/songbaisys/supplier/query_supplier_column</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="供应商id" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">SUPPLIER_ID</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].SUPPLIER_ID</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="供应商name" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">SUPPLIER_NAME</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].NAME</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="SUPPLIER_KINGDEE_CODE" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">SUPPLIER_KINGDEE_CODE</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].KINGDEE_CODE</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="SUPPLIER_TYPE 供应商类型" enabled="false">
+            <stringProp name="JSONPostProcessor.referenceNames">SUPPLIER_TYPE</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].SUPPLIER_TYPE</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="SUPPLIER_COUNT 供应商编码" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">SUPPLIER_COUNT</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].SUPPLIER_COUNT</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="查询仓库" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;selectList&quot;:[&#xd;
+        {&#xd;
+            &quot;culumnName&quot;:&quot;ENABLE&quot;,&#xd;
+            &quot;param&quot;:1,&#xd;
+            &quot;selectType&quot;:&quot;1001001&quot;&#xd;
+        },&#xd;
+        {&#xd;
+            &quot;culumnName&quot;:&quot;WAREHOUSE_TYPE&quot;,&#xd;
+            &quot;selectType&quot;:&quot;1001001&quot;&#xd;
+        }&#xd;
+    ],&#xd;
+    &quot;OFFSET&quot;:1,&#xd;
+    &quot;SIZE&quot;:1000&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/songbaisys/warehouse/query_warehouse_column</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="仓库id" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">ARRIVAL_WAREHOUSE_ID</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].WAREHOUSE_ID</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="仓库name" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">ARRIVAL_WAREHOUSE_NAME</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].NAME</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="查询商品" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;selectList&quot;:[&#xd;
+        {&#xd;
+            &quot;culumnName&quot;:&quot;CHECK_STATUS&quot;,&#xd;
+            &quot;selectType&quot;:&quot;1001007&quot;,&#xd;
+            &quot;param&quot;:1&#xd;
+        },&#xd;
+        {&#xd;
+            &quot;culumnName&quot;:&quot;STATUS&quot;,&#xd;
+            &quot;selectType&quot;:&quot;1001007&quot;,&#xd;
+            &quot;param&quot;:&quot;0&quot;&#xd;
+        }&#xd;
+    ],&#xd;
+    &quot;OFFSET&quot;:0,&#xd;
+    &quot;SIZE&quot;:10&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/songbaisys/appopt/query_commodity_column</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="CATEGORY_ID" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">CATEGORY_ID</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].CATEGORY_ID</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="STORAGE_COM_CONDITIONS" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">STORAGE_COM_CONDITIONS</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].STORAGE_COM_CONDITIONS</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="PRODUCT_NAME" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">PRODUCT_NAME</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].PRODUCT_NAME</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="REMARKS" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">REMARKS</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].REMARKS</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="COMMODITY_COUNT" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">COMMODITY_COUNT</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].COMMODITY_COUNT</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="BRAND_ACRONYM" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">BRAND_ACRONYM</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].BRAND_ACRONYM</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="COMMODITY_TYPE" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">COMMODITY_TYPE</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].COMMODITY_TYPE</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="COMMODITY_PRODUCT_CODE" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">COMMODITY_PRODUCT_CODE</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].COMMODITY_PRODUCT_CODE</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="COMMODITY_MASTER_ID" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">COMMODITY_MASTER_ID</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].COMMODITY_MASTER_ID</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="ORIGINAL_SKU" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">ORIGINAL_SKU</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].ORIGINAL_SKU</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="BRAND" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">BRAND</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].BRAND</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="APPROVAL_DATE" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">APPROVAL_DATE</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].APPROVAL_DATE</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="COMMODITY_NAME_ACRONYM" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">COMMODITY_NAME_ACRONYM</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].COMMODITY_NAME_ACRONYM</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="CATEGORY" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">CATEGORY</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].CATEGORY</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="COMMODITY_ID" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">COMMODITY_ID</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].COMMODITY_ID</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="PRODUCER_NAME" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">PRODUCER_NAME</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].PRODUCER_NAME</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="ORIGINAL_SKU" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">ORIGINAL_SKU</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].ORIGINAL_SKU</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="COMMODITY_NAME_ACRONYM" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">COMMODITY_NAME_ACRONYM</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].COMMODITY_NAME_ACRONYM</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="SPECIFICATION_ACRONYM" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">SPECIFICATION_ACRONYM</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].SPECIFICATION_ACRONYM</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="SPECIFICATION" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">SPECIFICATION</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].SPECIFICATION</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="PRODUCE_LICENSE_ID" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">PRODUCE_LICENSE_ID</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].PRODUCE_LICENSE_ID</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="COMMODITY_VULGO_ACRONYM" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">COMMODITY_VULGO_ACRONYM</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].COMMODITY_VULGO_ACRONYM</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="BRAND_ID" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">BRAND_ID</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].BRAND_ID</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="ILLUSTRATE" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">ILLUSTRATE</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].ILLUSTRATE</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="UNIT_MEASUREMENT(UNIT_CODE)" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">UNIT_MEASUREMENT</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].UNIT_MEASUREMENT</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="CONSUMABLE_MATERIAL" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">CONSUMABLE_MATERIAL</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].CONSUMABLE_MATERIAL</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="SN" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">SN</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].SN</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="REGISTRANT_NAME" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">REGISTRANT_NAME</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].REGISTRANT_NAME</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="REGISTRATION_ID" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">REGISTRATION_ID</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].REGISTRATION_ID</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="COMMODITY_VALIDITY" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">COMMODITY_VALIDITY</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].COMMODITY_VALIDITY</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="CHECK_STATUS" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">CHECK_STATUS</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].CHECK_STATUS</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="REGISTRANT_ADDRESS" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">REGISTRANT_ADDRESS</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].REGISTRANT_ADDRESS</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="SPECIFICATION_REF" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">SPECIFICATION_REF</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].SPECIFICATION_REF</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="SPARE_PARTS" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">SPARE_PARTS</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].SPARE_PARTS</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="GUARANTEED_INVENTORY" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">GUARANTEED_INVENTORY</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].GUARANTEED_INVENTORY</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="COMMODITY_SPU_ID" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">COMMODITY_SPU_ID</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].COMMODITY_SPU_ID</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="COMMODITY_NAME" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">COMMODITY_NAME</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].COMMODITY_NAME</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="TAX_RATE" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">TAX_RATE</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].TAX_RATE</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="SUBMIT" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">SUBMIT</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].SUBMIT</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="DUTY_TAX_RATE" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">DUTY_TAX_RATE</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].DUTY_TAX_RATE</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="APPROVAL_DEPARTMENT" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">APPROVAL_DEPARTMENT</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].APPROVAL_DEPARTMENT</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="TAG" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">TAG</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].TAG</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="CHECK_PERSON_ID" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">CHECK_PERSON_ID</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].CHECK_PERSON_ID</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="PRODUCTION_ADDRESS" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">PRODUCTION_ADDRESS</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].PRODUCTION_ADDRESS</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="COMMODITY_UNIT_LIST" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">COMMODITY_UNIT_LIST</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].COMMODITY_UNIT_LIST[0]</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="CREATED_DATE" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">CREATED_DATE</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.VARLIST[0].CREATED_DATE</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="新建采购订单" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;LAID_UP&quot;:0,&#xd;
+    &quot;PURCHASE_COMPANY_NAME&quot;:&quot;组织-wmy&quot;,&#xd;
+    &quot;ORG_ID&quot;:&quot;5651cc72fc294f42b1376020555feca1&quot;,&#xd;
+    &quot;PURCHASE_ORDER_TYPE&quot;:0,&#xd;
+    &quot;SUPPLIER_ID&quot;:&quot;${SUPPLIER_ID}&quot;,&#xd;
+    &quot;ARRIVAL_WAREHOUSE_NAME&quot;:&quot;${ARRIVAL_WAREHOUSE_NAME}&quot;,&#xd;
+    &quot;PURCHASE_TOTAL_PRICE&quot;:10000,&#xd;
+    &quot;SETTLE_CURRENCY&quot;:&quot;PRE001&quot;,&#xd;
+    &quot;SETTLE_CONDITION&quot;:&quot;FKTJ02_SYS&quot;,&#xd;
+    &quot;PAY_FLAG&quot;:0,&#xd;
+    &quot;EXCHANGE_GOODS&quot;:0,&#xd;
+    &quot;MANUFACTURERS_DIRECT_TRANS&quot;:0,&#xd;
+    &quot;RETURN_GOODS&quot;:0,&#xd;
+    &quot;PURCHASE_ORDER_CREATE_TIME&quot;:&quot;${__time(yyyy-MM-dd,)}&quot;,&#xd;
+    &quot;BUSINE_DATE&quot;:&quot;2021-11-10&quot;,&#xd;
+    &quot;PURCHASE_ORDER_STATUS&quot;:-1,&#xd;
+    &quot;PURCHASER_KINGDEE_CODE&quot;:&quot;1010066&quot;,&#xd;
+    &quot;PURCHASER_DEPARTMENT_KINGDEE_CODE&quot;:&quot;BM000031&quot;,&#xd;
+    &quot;PURCHASE_COMPANY_ID&quot;:&quot;30d1da43703b40a68e346f608b098440&quot;,&#xd;
+    &quot;ARRIVAL_WAREHOUSE_ID&quot;:&quot;${ARRIVAL_WAREHOUSE_ID}&quot;,&#xd;
+    &quot;SUPPLIER_NAME&quot;:&quot;${SUPPLIER_NAME}&quot;,&#xd;
+    &quot;SUPPLIER_TYPE&quot;:1,&#xd;
+    &quot;SUPPLIER_KINGDEE_CODE&quot;:&quot;${SUPPLIER_KINGDEE_CODE}&quot;,&#xd;
+    &quot;SUPPLIER_CONTACT_INFO&quot;:&quot;&quot;,&#xd;
+    &quot;CONTRACT_NAME&quot;:&quot;&quot;,&#xd;
+    &quot;ACCOMPLISHED&quot;:0,&#xd;
+    &quot;ORG_NAME&quot;:&quot;组织-wmy&quot;,&#xd;
+    &quot;PURCHASE_ORDER_FUNCTION_TYPE&quot;:0,&#xd;
+    &quot;DETAIL_LIST&quot;:[&#xd;
+        {&#xd;
+            &quot;CATEGORY_ID&quot;:202002,&#xd;
+            &quot;HOT_SALE&quot;:0,&#xd;
+            &quot;MEDICAL_INSURANCE&quot;:0,&#xd;
+            &quot;PRODUCT_USAGE&quot;:&quot;&quot;,&#xd;
+            &quot;CHECK_TIME&quot;:&quot;2021-10-16&quot;,&#xd;
+            &quot;CREATED_DATE&quot;:&quot;${CREATED_DATE}&quot;,&#xd;
+            &quot;created_person_id&quot;:&quot;44f7120148644e48a91c38e2f4e3911f&quot;,&#xd;
+            &quot;AGENT_NAME&quot;:&quot;&quot;,&#xd;
+            &quot;COMMODITY_UNIT_LIST&quot;:${COMMODITY_UNIT_LIST},&#xd;
+            &quot;ALTERATION&quot;:&quot;&quot;,&#xd;
+            &quot;AGENT_ADDRESS&quot;:&quot;&quot;,&#xd;
+            &quot;COMMODITY_COUNT&quot;:&quot;${COMMODITY_COUNT}&quot;,&#xd;
+            &quot;STORAGE_COM_CONDITIONS&quot;:&quot;${STORAGE_COM_CONDITIONS}&quot;,&#xd;
+            &quot;STATUS&quot;:0,&#xd;
+            &quot;SUN_PRICE&quot;:0,&#xd;
+            &quot;PERIOD_VALIDITY&quot;:&quot;2023-04-23&quot;,&#xd;
+            &quot;CREATED_PERSON&quot;:&quot;汪明月&quot;,&#xd;
+            &quot;BRAND_ACRONYM&quot;:&quot;BEGO&quot;,&#xd;
+            &quot;INTENDED_USE&quot;:&quot;&quot;,&#xd;
+            &quot;REGISTRATION_ID_ACRONYM&quot;:&quot;CXZZ20182400063&quot;,&#xd;
+            &quot;COMMODITY_TYPE&quot;:1,&#xd;
+            &quot;APPROVAL_DATE&quot;:&quot;2018-04-24&quot;,&#xd;
+            &quot;AVAILABLE_QUANTITY&quot;:20,&#xd;
+            &quot;COMMODITY_PRODUCT_CODE&quot;:&quot;57500&quot;,&#xd;
+            &quot;COMMODITY_MASTER_ID&quot;:&quot;BEGAM3000&quot;,&#xd;
+            &quot;PRODUCT_NAME&quot;:&quot;${PRODUCT_NAME}&quot;,&#xd;
+            &quot;ORIGINAL_SKU&quot;:&quot;${ORIGINAL_SKU}&quot;,&#xd;
+            &quot;BRAND&quot;:&quot;${BRAND}&quot;,&#xd;
+            &quot;COMMODITY_ID&quot;:&quot;${COMMODITY_ID}&quot;,&#xd;
+            &quot;COMMODITY_NAME_ACRONYM&quot;:&quot;${COMMODITY_NAME_ACRONYM}&quot;,&#xd;
+            &quot;REGISTRATION_UID&quot;:&quot;88ceef9d950843e598e0c62594f36045&quot;,&#xd;
+            &quot;OTHER_CONTENTS&quot;:&quot;&quot;,&#xd;
+            &quot;SPECIFICATION_ACRONYM&quot;:&quot;${SPECIFICATION_ACRONYM}&quot;,&#xd;
+            &quot;SUPPLIER_ID&quot;:&quot;ba0c1fd6b7534a42abbc099844e25f64&quot;,&#xd;
+            &quot;SPECIFICATION&quot;:&quot;${SPECIFICATION}&quot;,&#xd;
+            &quot;PRODUCE_LICENSE_ID&quot;:&quot;&quot;,&#xd;
+            &quot;COMMODITY_VULGO_ACRONYM&quot;:&quot;${COMMODITY_VULGO_ACRONYM}&quot;,&#xd;
+            &quot;BRAND_ID&quot;:&quot;${BRAND_ID}&quot;,&#xd;
+            &quot;CATEGORY&quot;:&quot;${CATEGORY}&quot;,&#xd;
+            &quot;COMMODITY_VULGO&quot;:&quot;${COMMODITY_VULGO}&quot;,&#xd;
+            &quot;ILLUSTRATE&quot;:&quot;&quot;,&#xd;
+            &quot;UNIT_MEASUREMENT&quot;:&quot;${UNIT_MEASUREMENT}&quot;,&#xd;
+            &quot;CONSUMABLE_MATERIAL&quot;:0,&#xd;
+            &quot;SN&quot;:1,&#xd;
+            &quot;SUPPLIER_NAME&quot;:&quot;20211011供应商-不对接金蝶&quot;,&#xd;
+            &quot;REGISTRANT_NAME&quot;:&quot;${REGISTRANT_NAME}&quot;,&#xd;
+            &quot;REGISTRATION_ID&quot;:&quot;${REGISTRATION_ID}&quot;,&#xd;
+            &quot;COMMODITY_VALIDITY&quot;:20,&#xd;
+            &quot;CHECK_STATUS&quot;:1,&#xd;
+            &quot;STRUCTURE_COMPOSITION&quot;:&quot;&quot;,&#xd;
+            &quot;PRODUCER_NAME&quot;:&quot;${PRODUCER_NAME}&quot;,&#xd;
+            &quot;CHECK_PERSON&quot;:&quot;汪明月&quot;,&#xd;
+            &quot;REGISTRANT_ADDRESS&quot;:&quot;${REGISTRANT_ADDRESS}&quot;,&#xd;
+            &quot;SPECIFICATION_REF&quot;:&quot;${SPECIFICATION_REF}&quot;,&#xd;
+            &quot;SPARE_PARTS&quot;:&quot;&quot;,&#xd;
+            &quot;GUARANTEED_INVENTORY&quot;:19,&#xd;
+            &quot;COMMODITY_SPU_ID&quot;:&quot;${COMMODITY_SPU_ID}&quot;,&#xd;
+            &quot;COMMODITY_NAME&quot;:&quot;${COMMODITY_NAME}&quot;,&#xd;
+            &quot;TAX_RATE&quot;:&quot;${TAX_RATE}&quot;,&#xd;
+            &quot;SUBMIT&quot;:&quot;${SUBMIT}&quot;,&#xd;
+            &quot;DUTY_TAX_RATE&quot;:&quot;${DUTY_TAX_RATE}&quot;,&#xd;
+            &quot;APPROVAL_DEPARTMENT&quot;:&quot;${APPROVAL_DEPARTMENT}&quot;,&#xd;
+            &quot;TAG&quot;:&quot;&quot;,&#xd;
+            &quot;CHECK_PERSON_ID&quot;:&quot;44f7120148644e48a91c38e2f4e3911f&quot;,&#xd;
+            &quot;PRODUCTION_ADDRESS&quot;:&quot;${PRODUCTION_ADDRESS}&quot;,&#xd;
+            &quot;PURCHASE_QUANTITY&quot;:1,&#xd;
+            &quot;UNIT_CODE&quot;:&quot;${UNIT_MEASUREMENT}&quot;,&#xd;
+            &quot;UNIT_COEFFICIENT&quot;:1,&#xd;
+            &quot;SINGLE_SUBTOTAL&quot;:10000,&#xd;
+            &quot;ALLOT&quot;:0,&#xd;
+            &quot;quantityError&quot;:false,&#xd;
+            &quot;TRUE_NUMBER&quot;:1,&#xd;
+            &quot;TRUE_PRICE&quot;:10000,&#xd;
+            &quot;TAX_PRICE&quot;:1150.4425,&#xd;
+            &quot;NO_TAX_SINGLE_SUBTOTAL&quot;:8849.5575,&#xd;
+            &quot;NO_TAX_UNIT_PRICE&quot;:8849.5575,&#xd;
+            &quot;PURCHASE_ORDER_COMMODITY_ID&quot;:&quot;aa3ded1650a8445181770ad4f3dfe9da&quot;,&#xd;
+            &quot;ROW_NUM&quot;:1,&#xd;
+            &quot;commodityStatus&quot;:false,&#xd;
+            &quot;AVERAGE_COST&quot;:10000,&#xd;
+            &quot;PURCHASE_UNIT_PRICE&quot;:10000&#xd;
+        }&#xd;
+    ]&#xd;
+}&#xd;
+&#xd;
+</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+          <stringProp name="HTTPSampler.path">/songbaisys/purchaseorder/add_purchaseorder_info</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="PURCHASE_ORDER_ID" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">PURCHASE_ORDER_ID</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.PD</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="查询采购订单" enabled="false">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/songbaisys/purchaseorder/query_purchaseorder?OFFSET=0&amp;SIZE=1&amp;PURCHASE_ORDER_ID=d0723279e3f1488c9cbf77dff421de5f</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="采购订单提交" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+          <stringProp name="HTTPSampler.path">/songbaisys/purchaseorder/confirm_purchaseorder?PURCHASE_ORDER_ID=${PURCHASE_ORDER_ID}</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="SUBMIT_PURCHASE_ORDER_ID" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">SUBMIT_PURCHASE_ORDER_ID</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.PD</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="采购订单审核" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;PURCHASE_ORDER_ID&quot;:&quot;${SUBMIT_PURCHASE_ORDER_ID}&quot;}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+          <stringProp name="HTTPSampler.path">/songbaisys/purchaseorder/create_purchaseorder</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="调试取样器" enabled="true">
+          <boolProp name="displayJMeterProperties">false</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="采购入库单" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+      </hashTree>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
